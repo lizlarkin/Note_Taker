@@ -100,7 +100,7 @@ const handleNoteView = (e) => {
   renderActiveNote();
 };
 
-// Sets the activeNote to and empty object and allows the user to enter a new note
+// Sets the activeNote to an empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
   activeNote = {};
   renderActiveNote();
@@ -176,6 +176,43 @@ if (window.location.pathname === '/notes') {
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
+
+// Display Save Button if Title is Added          DOES THIS NEED TO HAPPEN IMMEDIATELY?
+noteTitle.addEventListener("change", (e) => {     // BEHAVIOR NOW = WHEN CLICK AWAY
+  e.preventDefault();
+  show(saveNoteBtn);
+})
+
+// DIsplay Save Button if Text is Added
+noteText.addEventListener("change", (e) => {
+  e.preventDefault();
+  show(saveNoteBtn);
+})
+
+// Save note data and display new saved note data in left-hand column
+saveNoteBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const newNoteData = {
+    title: noteTitle.value,
+    text: noteText.value,
+  };
+  fetch("/api/notes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newNoteData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      alert("You have added a new note");
+    })
+    .catch((err) => console.log(err));
+});
+
+
+
 
 getAndRenderNotes();
 
