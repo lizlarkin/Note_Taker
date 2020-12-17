@@ -1,4 +1,4 @@
-let noteTitle;
+let noteTitle;                                                        // SERVER QUESTIONS
 let noteText;
 let saveNoteBtn;
 let newNoteBtn;
@@ -115,7 +115,7 @@ const handleRenderSaveBtn = () => {
 };
 
 // Render the list of note titles
-const renderNoteList = async (notes) => {
+const renderNoteList = async (notes) => {                           //ASYNC AND AWAIT??
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -179,8 +179,8 @@ if (window.location.pathname === '/notes') {
 
 // Display Save Button if Title is Added          DOES THIS NEED TO HAPPEN IMMEDIATELY?
 noteTitle.addEventListener("change", (e) => {     // BEHAVIOR NOW = WHEN CLICK AWAY
-  e.preventDefault();
-  show(saveNoteBtn);
+  e.preventDefault();                             // IS THIS RELATED TO LINES 109-115
+  show(saveNoteBtn);                              // USE PREVENT DEFAULT ON EVERY EVENT LISTENER? 
 })
 
 // DIsplay Save Button if Text is Added
@@ -190,8 +190,8 @@ noteText.addEventListener("change", (e) => {
 })
 
 // Save note data and display new saved note data in left-hand column
-saveNoteBtn.addEventListener("click", (e) => {
-  e.preventDefault();
+saveNoteBtn.addEventListener("click", (e) => {        // IS THIS BLOCK RELATED TO LINES 67-76
+  e.preventDefault();                                 // AND LINES 36-43
   const newNoteData = {
     title: noteTitle.value,
     text: noteText.value,
@@ -211,7 +211,15 @@ saveNoteBtn.addEventListener("click", (e) => {
     .catch((err) => console.log(err));
 });
 
+// Display existing note on right-hand column when clicked
 
+noteList.forEach(function(selectedNote) {
+  selectedNote.addEventListener("click", (e) => {
+    e.preventDefault();
+    // alert("this works");
+    activeNote = this.noteList;
+  });
+});
 
 
 getAndRenderNotes();
