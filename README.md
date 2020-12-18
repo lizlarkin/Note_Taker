@@ -5,13 +5,13 @@
 Connect front-end and back-end to provide user interface that perpetually saves notes. 
 
 ### Installation:
-Install Express package (npm i express) 
-Install UUID package (npm i uuid)
-Ensure that repo contains package.json (npm init)
+* Install Express package (npm i express) 
+* Install UUID package (npm i uuid)
+* Ensure that repo contains package.json (npm init)
 
 
 ### Usage: 
-Add note title and text, and click save button that dynamically appears once text is entered into either field. The saved notes will then appear on the lef-thand column on the screen. 
+Add note title and text, and click save button that dynamically appears once text is entered into either field. The saved notes will then appear on the left-hand column on the screen. 
 
 ### Contributing: 
 This project is open to contributions. 
