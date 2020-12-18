@@ -1,4 +1,4 @@
-let noteTitle;                                                        // SERVER QUESTIONS
+let noteTitle;                                                      
 let noteText;
 let saveNoteBtn;
 let newNoteBtn;
@@ -115,7 +115,7 @@ const handleRenderSaveBtn = () => {
 };
 
 // Render the list of note titles
-const renderNoteList = async (notes) => {                           //ASYNC AND AWAIT??
+const renderNoteList = async (notes) => {                           
   let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
@@ -177,10 +177,10 @@ if (window.location.pathname === '/notes') {
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
 
-// Display Save Button if Title is Added          DOES THIS NEED TO HAPPEN IMMEDIATELY?
-noteTitle.addEventListener("change", (e) => {     // BEHAVIOR NOW = WHEN CLICK AWAY
-  e.preventDefault();                             // IS THIS RELATED TO LINES 109-115
-  show(saveNoteBtn);                              // USE PREVENT DEFAULT ON EVERY EVENT LISTENER? 
+// Display Save Button if Title and text are Added          
+noteTitle.addEventListener("change", (e) => {    
+  e.preventDefault();                            
+  show(saveNoteBtn);                         
 })
 
 // DIsplay Save Button if Text is Added
@@ -190,8 +190,8 @@ noteText.addEventListener("change", (e) => {
 })
 
 // Save note data and display new saved note data in left-hand column
-saveNoteBtn.addEventListener("click", (e) => {        // IS THIS BLOCK RELATED TO LINES 67-76
-  e.preventDefault();                                 // AND LINES 36-43
+saveNoteBtn.addEventListener("click", (e) => {       
+  e.preventDefault();                                 
   const newNoteData = {
     title: noteTitle.value,
     text: noteText.value,
@@ -216,8 +216,13 @@ saveNoteBtn.addEventListener("click", (e) => {        // IS THIS BLOCK RELATED T
 noteList.forEach(function(selectedNote) {
   selectedNote.addEventListener("click", (e) => {
     e.preventDefault();
+
+    var selectedNote = document.querySelector('.list-group-item');
     // alert("this works");
-    activeNote = this.noteList;
+    console.log(selectedNote);
+    console.log(this.selectedNote);
+    console.log(this.noteTitle);
+    console.log(this.noteText);
   });
 });
 
